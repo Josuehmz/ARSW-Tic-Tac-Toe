@@ -164,62 +164,6 @@ function PlayersList({ game, currentPlayer }) {
   );
 }
 
-// Componente de log del juego
-function GameLog({ game, snapshots, onSelectSnapshot, viewingSnapshot }) {
-  const [showAll, setShowAll] = useState(false);
-  
-  if (!game || !game.gameLog || game.gameLog.length === 0) {
-    return null;
-  }
-  
-  const displayedLogs = showAll 
-    ? game.gameLog.map((entry, idx) => ({ entry, idx })).reverse()
-    : game.gameLog.slice(-5).map((entry, idx) => ({ entry, idx: game.gameLog.length - 5 + idx })).reverse();
-  
-  const handleLogClick = (moveIndex) => {
-    if (snapshots[moveIndex]) {
-      onSelectSnapshot(moveIndex);
-    }
-  };
-  
-  return (
-    <div className="game-log">
-      <h3>Historial del Juego ({game.gameLog.length} jugadas)</h3>
-      {viewingSnapshot !== null && (
-        <div className="viewing-snapshot-banner">
-          📜 Viendo jugada #{viewingSnapshot + 1}
-          <button 
-            className="back-to-current"
-            onClick={() => onSelectSnapshot(null)}
-          >
-            ⏩ Volver al presente
-          </button>
-        </div>
-      )}
-      <div className="log-entries">
-        {displayedLogs.map(({ entry, idx }) => (
-          <div 
-            key={idx} 
-            className={`log-entry ${viewingSnapshot === idx ? 'selected' : ''}`}
-            onClick={() => handleLogClick(idx)}
-            title="Haz clic para ver el tablero en este momento"
-          >
-            <span className="move-number">#{idx + 1}</span> {entry}
-          </div>
-        ))}
-      </div>
-      {game.gameLog.length > 5 && (
-        <button 
-          className="history-toggle"
-          onClick={() => setShowAll(!showAll)}
-        >
-          {showAll ? '📋 Mostrar últimas 5' : '📜 Ver todas las jugadas'}
-        </button>
-      )}
-    </div>
-  );
-}
-
 // Componente principal del juego
 export default function Game() {
   const [game, setGame] = useState(null);
@@ -723,23 +667,12 @@ export default function Game() {
         </div>
         
         <div className="right-panel">
-          <GameLog 
-            game={game} 
-            snapshots={gameSnapshots}
-            onSelectSnapshot={setViewingSnapshot}
-            viewingSnapshot={viewingSnapshot}
-          />
           
-          <div className="legend">
-            <h3></h3>
-            <div className="legend-item"></div>
-            <div className="legend-item"></div>
-            <div className="legend-item"></div>
-            <div className="legend-item"></div>
-            <div className="legend-item"></div>
+        
+           
+      
           </div>
         </div>
       </div>
-    </div>
   );
 }

@@ -229,3 +229,5 @@ Cliente 1                 Servidor                Cliente 2
 ![generarC()](img/generaC.png)
 ![dosjugadores()](img/dosjugadores.png)
 ![jugando()](img/jugando.png)
+
+### Despliegue en aws
