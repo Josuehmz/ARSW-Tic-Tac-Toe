@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
-// Componente de celda del tablero
 function Square({ cell, onSquareClick, isActive, currentPlayerSymbol }) {
   const getCellClass = () => {
     let classes = 'square';
@@ -11,7 +10,7 @@ function Square({ cell, onSquareClick, isActive, currentPlayerSymbol }) {
       classes += ' blocked';
     }
     
-    // Mostrar el estilo de celda especial SOLO si está revelada
+   
     if (cell.isRevealed && cell.type && cell.type !== 'NORMAL') {
       classes += ` cell-${cell.type.toLowerCase()}`;
     }
@@ -24,7 +23,7 @@ function Square({ cell, onSquareClick, isActive, currentPlayerSymbol }) {
   };
   
   const getCellContent = () => {
-    // Primero mostrar el valor (X o O) si existe
+   
     if (cell.value) {
       return (
         <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -45,7 +44,7 @@ function Square({ cell, onSquareClick, isActive, currentPlayerSymbol }) {
       );
     }
     
-    // Si no hay valor, la celda está vacía (NO mostrar el tipo hasta que se juegue)
+    
     return '';
   };
   
@@ -72,9 +71,9 @@ function Square({ cell, onSquareClick, isActive, currentPlayerSymbol }) {
   );
 }
 
-// Componente del tablero
+
 function Board({ game, onSquareClick, currentPlayer, snapshot }) {
-  // Si hay un snapshot, usar ese estado del tablero
+  
   const boardToShow = snapshot ? snapshot.board : game?.board;
   const isSnapshot = !!snapshot;
   
@@ -112,50 +111,9 @@ function Board({ game, onSquareClick, currentPlayer, snapshot }) {
   );
 }
 
-// Componente de poderes del jugador
+
 function PowersPanel({ player, onUsePower, selectedPower, onCancelPower }) {
-  if (!player) {
-    return null;
-  }
   
-  return (
-    <div className="powers-panel">
-      <h3>⚡ Tus Poderes</h3>
-      {selectedPower && (
-        <div className="power-selected-banner">
-          <div>🎯 Poder seleccionado: <strong>{selectedPower.replace(/_/g, ' ')}</strong></div>
-          <button 
-            className="cancel-power-button"
-            onClick={onCancelPower}
-          >
-            ❌ Cancelar
-          </button>
-        </div>
-      )}
-      {!player.powers || player.powers.length === 0 ? (
-        <div className="no-powers-message">
-          <p>🎯 Aún no tienes poderes</p>
-          <p style={{ fontSize: '0.85rem', marginTop: '5px', color: '#666' }}>
-            Captura celdas con ⚡ para obtener poderes especiales
-          </p>
-        </div>
-      ) : (
-        <div className="powers-list">
-          {player.powers.map((power, index) => (
-            <button 
-              key={index}
-              className={`power-button ${selectedPower === power ? 'selected' : ''}`}
-              onClick={() => onUsePower(power)}
-              title={getPowerDescription(power)}
-              disabled={selectedPower && selectedPower !== power}
-            >
-              {getPowerIcon(power)} {power.replace(/_/g, ' ')}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
 }
 
 function getPowerIcon(power) {
@@ -655,7 +613,7 @@ export default function Game() {
               <li>Espera a que se unan 2-4 jugadores</li>
               <li>Juega por turnos en el tablero</li>
               <li>Las casillas especiales otorgan poderes</li>
-              <li>¡Cuidado con las trampas! 💣</li>
+              <li></li>
             </ul>
           </div>
         </div>
@@ -719,7 +677,7 @@ export default function Game() {
           <div className="game-status">
             {game.status === 'WAITING' ? (
               <div className="waiting-status">
-                ⏳ Esperando jugadores... ({game.players.length}/4)
+                ⏳ Esperando jugadores... ({game.players.length}/2)
                 <div style={{ fontSize: '0.9rem', marginTop: '5px' }}>
                   El juego comienza con 2 jugadores mínimo
                 </div>
@@ -773,12 +731,12 @@ export default function Game() {
           />
           
           <div className="legend">
-            <h3>Leyenda</h3>
-            <div className="legend-item">💣 Trampa - Pierdes turno</div>
-            <div className="legend-item">⚡ Poder - Ganas habilidad</div>
-            <div className="legend-item">👻 Falsa - Desaparece</div>
-            <div className="legend-item">💎 Doble - Puntos x2</div>
-            <div className="legend-item">🔄 Reversa - Invierte orden</div>
+            <h3></h3>
+            <div className="legend-item"></div>
+            <div className="legend-item"></div>
+            <div className="legend-item"></div>
+            <div className="legend-item"></div>
+            <div className="legend-item"></div>
           </div>
         </div>
       </div>
