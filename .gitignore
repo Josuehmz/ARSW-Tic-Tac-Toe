@@ -1,7 +1,9 @@
-# Dependencias
+# Dependencias Node.js
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
+yarn.lock
 
 # Testing
 /coverage
@@ -29,4 +31,19 @@ yarn-error.log*
 
 # Sistema
 Thumbs.db
+
+# Backend (Java/Maven)
+backend/target/
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+backend/*.iml
+backend/.project
+backend/.classpath
+backend/.settings/
+backend/.factorypath
+
+# Logs
+*.log
+logs/
 

@@ -1,6 +1,6 @@
 {
-  "name": "react.dev",
-  "version": "0.0.0",
+  "name": "tictactoe-multiplayer",
+  "version": "1.0.0",
   "main": "/src/index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -11,7 +11,9 @@
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-scripts": "^5.0.0"
+    "react-scripts": "^5.0.0",
+    "sockjs-client": "^1.6.1",
+    "@stomp/stompjs": "^7.0.0"
   },
   "devDependencies": {},
   "browserslist": {
@@ -25,5 +27,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:8080"
 }
